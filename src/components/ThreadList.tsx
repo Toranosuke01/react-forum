@@ -1,4 +1,3 @@
-import './App.css';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
@@ -26,7 +25,7 @@ function ThreadList() {
 
   return (
     <>
-      <div className="thread-container">
+      <div className="grid place-items-center m-5">
         {threads.map(thread => (
           <div key={thread.id} className="border border-gray-400 rounded-md bg-white hover:bg-gray-100 grid place-items-center w-1/2 p-1 m-1">{thread.title}</div>
         ))}

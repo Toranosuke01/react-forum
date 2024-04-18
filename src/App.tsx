@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
-import Header from './Header';
-import ThreadList from './ThreadList';
+import { BrowserRouter, Route, Routes} from "react-router-dom";
+import Home from './pages/Home';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <ThreadList />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="*" element={<h1>Not Found Page</h1>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
