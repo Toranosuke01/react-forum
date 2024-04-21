@@ -6,7 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      backgroundColor: ['disabled']
+      width: {
+        '200': '50rem',
+        '300': '75rem'
+      }
     },
   },
   plugins: [],
