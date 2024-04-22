@@ -1,13 +1,13 @@
-import Header from '../components/Header';
-import ThreadForm from '../components/ThreadForm';
+import Header from "../components/Header";
+import ThreadForm from "../components/ThreadForm";
 
-function CreateThread() {
+const CreateThread = () => {
   return (
     <>
       <Header />
       <ThreadForm />
     </>
   );
-}
+};
 
 export default CreateThread;

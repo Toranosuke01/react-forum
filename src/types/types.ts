@@ -16,13 +16,13 @@ export type Thread = {
 
 export type PostFormProps = {
   handleNewPost: (postData: NewPost) => void;
-  formtext: {post: string};
-  setFormText: React.Dispatch<React.SetStateAction<{post: string}>>
+  formtext: { post: string };
+  setFormText: React.Dispatch<React.SetStateAction<{ post: string }>>;
 };
 
 export type PostsListProps = {
   posts: GetPost[];
   offset: number;
-  setOffset: React.Dispatch<React.SetStateAction<number>>
+  setOffset: React.Dispatch<React.SetStateAction<number>>;
   handlePostClick: (postObj: { post: string }) => void;
 };
