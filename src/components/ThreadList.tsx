@@ -28,15 +28,17 @@ export const ThreadList = () => {
   return (
     <>
       <div className="grid place-items-center m-5">
-        {threads.length > 0 ? threads.map((thread, index) => (
-          <div key={thread.id} 
-            className={
-              `border border-gray-200 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 w-1/2 p-3 pl-4 cursor-pointer`
-            } 
-            onClick={() => handleThreadClick(thread.id, thread.title)}>
-            {thread.title}
-          </div>
-        )) : <p>Loading...</p>}
+        {
+          threads.map((thread, index) => (
+            <div key={thread.id} 
+              className={
+                `border border-gray-200 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'} hover:bg-gray-100 w-1/2 p-3 pl-4 cursor-pointer`
+              } 
+              onClick={() => handleThreadClick(thread.id, thread.title)}>
+              {thread.title}
+            </div>
+          ))
+        }
       </div>
       <div className="text-center">
         <button className="border px-4 py-2 rounded text-black bg-white hover:bg-gray-100 disabled:bg-gray-200 disabled:text-gray-500 disabled:cursor-not-allowed" 

@@ -11,6 +11,9 @@ import { GetPost, NewPost } from '../types/types';
 function Posts() {
   const [offset, setOffset] = useState(0);
   const [posts, setPosts] = useState<GetPost[]>([]);
+  const [formtext, setFormText] = useState({
+    post: ''
+  });
 
   const { thread_id } = useParams();
 
@@ -30,6 +33,10 @@ function Posts() {
     getPosts();
   }, [getPosts]);
 
+  const handlePostClick = (postObj: {post: string}) => {
+    setFormText({post: `>${postObj.post}\n`});
+  }
+
   const handleNewPost = async (postData: NewPost) => {
     try {
       const responce = await axios.post(`https://railway.bulletinboard.techtrain.dev/threads/${thread_id}/posts`, postData);
@@ -46,10 +53,10 @@ function Posts() {
       <h2 className="text-center text-2xl font-bold p-2 m-5">{title}</h2>
       <div className="flex justify-center items-start m-5">
         <div className="border border-gray-200 bg-white w-1/2 overflow-auto">
-          <PostsList posts={posts} offset={offset} setOffset={setOffset} />
+          <PostsList posts={posts} offset={offset} setOffset={setOffset} handlePostClick={handlePostClick} />
         </div>
         <div className="border border-gray-200 bg-white ml-5">
-          <PostForm handleNewPost={handleNewPost}/>
+          <PostForm formtext={formtext} setFormText={setFormText} handleNewPost={handleNewPost}/>
         </div>
       </div>
       <BackHome />
