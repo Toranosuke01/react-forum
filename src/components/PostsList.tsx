@@ -1,31 +1,6 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { PostsListProps } from "../types/types";
 
-type PostsListProps = {
-  thread_id: string;
-};
-
-type Post = {
-  id: string;
-  post: string;
-};
-
-export const PostsList: React.FC<PostsListProps> = ({ thread_id }) => {
-
-  const [offset, setOffset] = useState(0);
-  const [posts, setPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    async function getPosts() {
-      try {
-        const response = await axios.get(`https://railway.bulletinboard.techtrain.dev/threads/${thread_id}/posts?offset=${offset}`);
-        setPosts(response.data.posts);
-      } catch (error) {
-        console.error(error);
-      }
-    }
-    getPosts();
-  }, [offset, thread_id]);
+export const PostsList: React.FC<PostsListProps> = ({ posts, offset, setOffset }) => {
 
   return (
     <>
