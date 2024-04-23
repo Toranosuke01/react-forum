@@ -5,6 +5,7 @@ export const PostForm: React.FC<PostFormProps> = ({
   setFormText,
   handleNewPost,
 }) => {
+  // 投稿フォームの入力内容を更新
   const handleForm = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setFormText({
       ...formtext,
@@ -12,6 +13,7 @@ export const PostForm: React.FC<PostFormProps> = ({
     });
   };
 
+  // 投稿ボタンがクリックされたときの処理
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (formtext.post.trim()) {

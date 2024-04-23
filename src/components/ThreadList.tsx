@@ -4,10 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { Thread } from "../types/types";
 
 export const ThreadList = () => {
+  // スレッドの取得位置
   const [offset, setOffset] = useState(0);
+  // 取得したスレッド一覧
   const [threads, setThreads] = useState<Thread[]>([]);
   const navigate = useNavigate();
 
+  // スレッド一覧を取得する関数
   useEffect(() => {
     async function getThreads() {
       try {
@@ -22,6 +25,7 @@ export const ThreadList = () => {
     getThreads();
   }, [offset]);
 
+  // スレッドがクリックされたときの処理（スレッド内投稿に遷移）
   const handleThreadClick = (id: number, title: string) => {
     navigate(`/thread/${id}`, { state: { title } });
   };

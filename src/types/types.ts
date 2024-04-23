@@ -1,5 +1,3 @@
-import { MouseEventHandler } from "react";
-
 export type GetPost = {
   id: string;
   post: string;

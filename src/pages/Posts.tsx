@@ -9,17 +9,23 @@ import PostForm from "../components/PostForm";
 import { GetPost, NewPost } from "../types/types";
 
 const Posts = () => {
+  // 投稿の取得位置
   const [offset, setOffset] = useState(0);
+  // 取得した投稿一覧
   const [posts, setPosts] = useState<GetPost[]>([]);
+  // 投稿フォームのテキスト状態
   const [formtext, setFormText] = useState({
     post: "",
   });
 
+  // URLパラメータからスレッドIDを取得
   const { thread_id } = useParams();
 
+  // スレッドタイトルを取得
   const location = useLocation();
   const title = location.state?.title;
 
+  // APIから投稿一覧を取得する関数
   const getPosts = useCallback(async () => {
     try {
       const response = await axios.get(
@@ -31,14 +37,17 @@ const Posts = () => {
     }
   }, [thread_id, offset]);
 
+  //投稿一覧の取得
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
+  // 投稿がクリックされたときの処理（返信機能）
   const handlePostClick = (postObj: { post: string }) => {
     setFormText({ post: `>${postObj.post}\n` });
   };
 
+  // 投稿をPOSTする関数
   const handleNewPost = async (postData: NewPost) => {
     try {
       const responce = await axios.post(

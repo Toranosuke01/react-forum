@@ -4,11 +4,13 @@ import { useNavigate } from "react-router-dom";
 import BackHome from "./BackHome";
 
 export const ThreadForm = () => {
+  // 入力されたスレッドタイトルの状態
   const [title, setTitle] = useState({
     title: "",
   });
   const navigate = useNavigate();
 
+  // スレッドタイトルの入力状態を更新する関数
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setTitle({
       ...title,
@@ -16,19 +18,15 @@ export const ThreadForm = () => {
     });
   };
 
+  // 新規スレッドをPOSTする関数
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const url = "https://railway.bulletinboard.techtrain.dev/threads";
     const data = {
       title: title.title,
     };
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
     try {
-      const response = await axios.post(url, data, config);
+      const response = await axios.post(url, data);
       console.log("Response data:", response.data);
       navigate("/");
     } catch (error) {
